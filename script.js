@@ -1,6 +1,7 @@
 
 const numberOfSquares = 16;
 
+
 function createGrid(){
 	const grid = document.querySelector('.grid');
 	for (let i = 0; i < numberOfSquares; i++){
@@ -16,3 +17,11 @@ function createGrid(){
 }
 
 createGrid();
+
+const squares = document.querySelectorAll('.square');
+
+squares.forEach((square) => {
+	square.addEventListener('mouseenter', (event) => {
+		event.target.classList.add('hover');
+	})
+});
