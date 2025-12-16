@@ -1,9 +1,9 @@
-
-const numberOfSquares = 16;
-
-
-function createGrid(){
-	const grid = document.querySelector('.grid');
+function createGrid(numberOfSquares){
+	const body = document.querySelector('body');
+	const grid = document.createElement('div');
+	grid.classList.add('grid');
+	body.appendChild(grid);
+	
 	for (let i = 0; i < numberOfSquares; i++){
 		const column = document.createElement('div');
 		column.classList.add('column');
@@ -16,12 +16,37 @@ function createGrid(){
 	}
 }
 
-createGrid();
+function hover(){
+	const squares = document.querySelectorAll('.square');
+	squares.forEach((square) => {
+		square.addEventListener('mouseenter', (event) => {
+			event.target.classList.add('hover');
+		})
+	});
+}
 
-const squares = document.querySelectorAll('.square');
+function getSize(){
+	let gridSize;
+	do{
+		gridSize = prompt('Enter a number between 1 and 100');
+	}while(gridSize < 1 || gridSize > 99);
+	return gridSize;
+}
 
-squares.forEach((square) => {
-	square.addEventListener('mouseenter', (event) => {
-		event.target.classList.add('hover');
-	})
-});
+function reset(){
+	const grid = document.querySelector('.grid');
+	grid.remove();
+	const gridSize = +getSize();
+	createGrid(gridSize);
+	hover();
+}
+
+const squareNumber = 16;
+createGrid(squareNumber);
+hover();
+
+selectBtn = document.querySelector('.selectBtn');
+selectBtn.addEventListener('click', reset);
+
+
+
