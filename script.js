@@ -20,10 +20,11 @@ function hover(){
 	const squares = document.querySelectorAll('.square');
 	squares.forEach((square) => {
 		square.addEventListener('mouseenter', (event) => {
-			event.target.classList.add('hover');
+			event.target.style.backgroundColor = getRandomColor();
 		})
 	});
 }
+
 
 function getSize(){
 	let gridSize;
@@ -41,12 +42,25 @@ function reset(){
 	hover();
 }
 
+function getRandomInt(max){
+	return Math.floor(Math.random() * max);
+}
+
+function getRandomColor(){
+	return `rgb(${getRandomInt(256)}, ${getRandomInt(256)}, ${getRandomInt(256)})`;
+}
+
 const squareNumber = 16;
 createGrid(squareNumber);
 hover();
 
 selectBtn = document.querySelector('.selectBtn');
 selectBtn.addEventListener('click', reset);
+
+
+
+
+
 
 
 
